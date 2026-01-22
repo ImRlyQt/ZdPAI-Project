@@ -57,13 +57,43 @@ export default function Profile(){
   }
 
   async function loadCards(){
-    const r = await apiGet("/cards", token, isPublic ? { user_id: viewedUserId } : undefined);
-    const data = await r.json();
-    setCards(Array.isArray(data) ? data : []);
-    setTotal(Array.isArray(data) ? data.reduce((s,c)=>s+(Number(c.quantity)||1),0) : 0);
+    let r;
+    try {
+      if (isAdmin && isPublic) {
+        r = await apiGet("/cards", token, { user_id: viewedUserId });
+      } else if (isPublic) {
+        r = await apiGet(`/profiles/${viewedUserId}/cards`);
+      } else {
+        r = await apiGet("/cards", token);
+      }
+      if (!r.ok) { setCards([]); setTotal(0); return; }
+      const data = await r.json();
+      setCards(Array.isArray(data) ? data : []);
+      setTotal(Array.isArray(data) ? data.reduce((s,c)=>s+(Number(c.quantity)||1),0) : 0);
+    } catch {
+      setCards([]);
+      setTotal(0);
+    }
   }
 
   useEffect(()=>{ loadCards(); }, [viewedUserId]);
+
+  // Load displayed profile nick when switching views
+  useEffect(()=>{
+    async function loadNick(){
+      if (!isPublic) { setNick(user?.nick || ""); return; }
+      if (!viewedUserId) { setNick("Public profile"); return; }
+      try {
+        const r = await apiGet(`/profiles/${viewedUserId}`, token);
+        if (!r.ok) { setNick("Public profile"); return; }
+        const data = await r.json();
+        setNick(data?.nick || "Public profile");
+      } catch {
+        setNick("Public profile");
+      }
+    }
+    loadNick();
+  }, [isPublic, viewedUserId, user?.nick, token]);
 
   function logoutClick(){ logout(); navigate("/login"); }
 
