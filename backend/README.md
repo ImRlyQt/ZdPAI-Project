@@ -55,6 +55,31 @@ uvicorn main:app --reload
 - `routers/` — moduły: `auth.py`, `profiles.py`, `cards.py`, `account.py`, `deps.py`
 - `requirements.txt` — zależności
 
+## Opis folderów i plików (dla prowadzącego)
+Poniżej krótki opis odpowiedzialności poszczególnych elementów backendu.
+
+- `main.py`
+  - Punkt startowy aplikacji FastAPI.
+  - Konfiguruje CORS i rejestruje wszystkie routery.
+  - Na starcie tworzy tabele w SQLite.
+- `database.py`
+  - Inicjalizacja silnika SQLite i sesji SQLAlchemy (`SessionLocal`).
+- `models.py`
+  - Definicje ORM: `User` (dane konta), `UserCard` (kolekcja kart z ilością).
+  - Unikat `user_id + card_id` zapobiega duplikatom tej samej karty.
+- `schemas.py`
+  - Modele Pydantic opisujące kontrakty żądań i odpowiedzi API.
+- `auth.py`
+  - Hashowanie haseł i obsługa JWT (generowanie, weryfikacja).
+- `routers/`
+  - `auth.py` — rejestracja i logowanie użytkowników (JWT).
+  - `profiles.py` — wyszukiwanie profili i odczyt profilu po `id`.
+  - `cards.py` — wyszukiwanie kart (MTG API), dodawanie/usuwanie kart.
+  - `account.py` — usuwanie konta (własnego lub przez admina).
+  - `deps.py` — zależności FastAPI (np. autoryzacja i aktualny użytkownik).
+- `requirements.txt`
+  - Lista zależności backendu do odtworzenia środowiska.
+
 ## Konfiguracja
 - Sekret JWT jest zdefiniowany w `backend/auth.py` (`JWT_SECRET`). Zmień go na własny w środowisku produkcyjnym.
 
