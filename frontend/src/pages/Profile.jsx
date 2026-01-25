@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { apiGet, apiPost } from "../api";
@@ -16,6 +16,7 @@ export default function Profile(){
   const [nick, setNick] = useState(user?.nick || "");
   const [cards, setCards] = useState([]);
   const [total, setTotal] = useState(0);
+  const [profileNotFound, setProfileNotFound] = useState(false);
 
   // Profile search
   const [profileQ, setProfileQ] = useState("");
@@ -70,7 +71,10 @@ export default function Profile(){
       } else {
         r = await apiGet("/cards", token);
       }
-      if (!r.ok) { setCards([]); setTotal(0); return; }
+      if (!r.ok) {
+        if (isPublic && r.status === 404) setProfileNotFound(true);
+        setCards([]); setTotal(0); return;
+      }
       const data = await r.json();
       setCards(Array.isArray(data) ? data : []);
       setTotal(Array.isArray(data) ? data.reduce((s,c)=>s+(Number(c.quantity)||1),0) : 0);
@@ -85,10 +89,12 @@ export default function Profile(){
   // Load displayed profile nick when switching views
   useEffect(()=>{
     async function loadNick(){
+      setProfileNotFound(false);
       if (!isPublic) { setNick(user?.nick || ""); return; }
       if (!viewedUserId) { setNick("Public profile"); return; }
       try {
         const r = await apiGet(`/profiles/${viewedUserId}`, token);
+        if (r.status === 404) { setProfileNotFound(true); setNick("Profile not found"); return; }
         if (!r.ok) { setNick("Public profile"); return; }
         const data = await r.json();
         setNick(data?.nick || "Public profile");
@@ -145,8 +151,8 @@ export default function Profile(){
       <div className="layout">
         <aside className="sidebar">
           <img src="https://avatars.githubusercontent.com/u/583231?v=4" alt="Profile" />
-          <h2>{nick || (isPublic ? "Public profile" : "Profile")}</h2>
-          <p>{isPublic ? "This is a public profile." : "Welcome to your profile!"}</p>
+          <h2>{profileNotFound ? "Profile not found" : (nick || (isPublic ? "Public profile" : "Profile"))}</h2>
+          <p>{profileNotFound ? "No user exists with this id." : (isPublic ? "This is a public profile." : "Welcome to your profile!")}</p>
           <div id="card-count" className="card-count" aria-live="polite">Cards: {total}</div>
           {(!isPublic || isAdmin) && (
             <div className="search-bar" style={{position:"relative"}}>
@@ -173,7 +179,9 @@ export default function Profile(){
         </aside>
         <main className="content">
           <div id="my-cards" className="cards-grid">
-            {cards.length === 0 ? (
+            {profileNotFound ? (
+              <div style={{color:"#aaa"}}>This profile does not exist. Please choose another user.</div>
+            ) : cards.length === 0 ? (
               <div style={{color:"#aaa"}}>No cards yet. Search above to add some.</div>
             ) : cards.map(c => {
               const src = c.image_url || (c.multiverseid ? `https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${c.multiverseid}&type=card` : "");

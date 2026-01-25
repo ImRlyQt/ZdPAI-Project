@@ -15,8 +15,9 @@
 	- Działa: logowanie, rejestracja, profil, publiczny profil, wyszukiwanie profili i kart,
 	  dodawanie/usuwanie kart, rola admina, usuwanie konta.
 
-6. Dobór technologii + uzasadnienie – DO UZUPEŁNIENIA
-	- Brak osobnego uzasadnienia w README. Dodać krótkie sekcje w obu README.
+6. Dobór technologii + uzasadnienie – SPEŁNIONE
+	- Frontend: React + Vite (szybki dev server, komponenty, łatwa rozbudowa) + SCSS (zmienne i porządek w stylach).
+	- Backend: FastAPI (wydajność, automatyczne OpenAPI), SQLAlchemy (czytelny ORM), JWT (stateless auth).
 
 7. Architektura kodu (warstwy) – DO UZUPEŁNIENIA
 	- Backend działa głównie w routerach; brakuje wyraźnej warstwy serwisów.
