@@ -22,7 +22,7 @@
 7. Architektura kodu (warstwy) – DO UZUPEŁNIENIA
 	- Backend działa głównie w routerach; brakuje wyraźnej warstwy serwisów.
 
-8. UX/UI (responsywność) – CZĘŚCIOWO SPEŁNIONE
+8. UX/UI (responsywność) – SPEŁNIONE
 	- Są media queries w frontend/src/styles/auth.scss i profile.scss.
 	- Do dopracowania na mniejszych ekranach (testy mobilne).
 
@@ -32,7 +32,7 @@
 10. API – SPEŁNIONE
 	- REST w backend/routers/*, statusy błędów obsłużone (401/404/409).
 
-11. Frontend–API (loading/error) – DO UZUPEŁNIENIA
+11. Frontend–API (loading/error) – SPEŁNIONE
 	- Brak jawnych stanów loading/error w wyszukiwaniu profili/kart i liście kart.
 
 12. Jakość kodu – SPEŁNIONE

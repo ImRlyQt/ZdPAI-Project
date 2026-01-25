@@ -83,7 +83,6 @@ VITE_API_URL=http://localhost:8000
 
 ## API Documentation
 - Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
 
 ## Database
 - SQLite file: `backend/app.db`
