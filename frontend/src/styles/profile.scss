@@ -31,7 +31,7 @@ header .logo { flex:1; }
 .card-count { background: rgba(0,0,0,0.35); color:#fff; padding:0.35rem 0.6rem; border-radius:999px; font-weight:600; margin-bottom:1rem; }
 .sidebar .search-bar { width:100%; margin-bottom:1.5rem; background:#ffbefb; }
 .sidebar .search-bar input { font-size:0.85rem; }
-.content { flex:1; min-width:0; background-color:#1a1a1a; padding:2rem; overflow:hidden; }
+.content { flex:1; min-width:0; background-color:#1a1a1a; padding:2rem; overflow-y:auto; overflow-x:hidden; }
 .cards-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap:1rem; }
 .cards-grid img { width:100%; border-radius:0.5rem; transition: transform 0.2s; }
 .cards-grid img:hover { transform: scale(1.05); }
