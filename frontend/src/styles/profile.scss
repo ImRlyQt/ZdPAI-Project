@@ -36,7 +36,7 @@ header .logo { flex:1; }
 .cards-grid img { width:100%; border-radius:0.5rem; transition: transform 0.2s; }
 .cards-grid img:hover { transform: scale(1.05); }
 .card-thumb { position:relative; }
-.card-thumb .qty-badge { position:absolute; left:6px; bottom:6px; background:rgba(0,0,0,0.7); color:#fff; padding:2px 6px; border-radius:6px; font-size:0.8rem; opacity:0; transition:opacity .15s; }
+.card-thumb .qty-badge { position:absolute; left:6px; bottom:6px; background:rgba(0,0,0,0.7); color:#fff; padding:2px 6px; border-radius:6px; font-size:0.8rem; opacity:1; }
 .card-thumb .remove-btn { position:absolute; right:6px; bottom:6px; width:26px; height:26px; background:rgba(180,0,0,0.9); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; line-height:1; font-size:18px; box-shadow:0 2px 6px rgba(0,0,0,0.4); opacity:0; transform:scale(0.9); transition:opacity .15s, transform .15s; cursor:pointer; }
 .card-thumb:hover .qty-badge { opacity:1; }
 .card-thumb:hover .remove-btn { opacity:1; transform:scale(1); }

@@ -48,7 +48,11 @@ export default function Profile(){
   async function addCard(card){
     const payload = (isAdmin && isPublic) ? { ...card, user_id: viewedUserId } : card;
     const r = await apiPost("/cards/add", token, payload);
-    if (r.ok) loadCards();
+    if (r.ok) {
+      loadCards();
+      setCardQ("");
+      setCardResults([]);
+    }
   }
   async function removeCard(cardId){
     const payload = (isAdmin && isPublic) ? { card_id: cardId, user_id: viewedUserId } : { card_id: cardId };
@@ -120,7 +124,7 @@ export default function Profile(){
                 <div key={u.id} style={{padding:"0.5rem", cursor:"pointer", color:"#fff"}}
                      onMouseOver={e=>e.currentTarget.style.background="#333"}
                      onMouseOut={e=>e.currentTarget.style.background=""}
-                     onClick={()=>navigate(`/profile/${u.id}`)}>{u.nick}</div>
+                     onClick={()=>{ setProfileQ(""); setProfileResults([]); navigate(`/profile/${u.id}`); }}>{u.nick}</div>
               ))}
             </div>
           )}
@@ -178,7 +182,7 @@ export default function Profile(){
               return (
                 <div key={c.id} className='card-thumb' style={{position:"relative"}}>
                   <img src={src} alt={c.name} style={{display:"block", width:"100%", borderRadius:"0.5rem"}} />
-                  <span className='qty-badge' style={{position:"absolute", left:6, bottom:6, background:"rgba(0,0,0,0.7)", color:"#fff", padding:"2px 6px", borderRadius:6, fontSize:"0.8rem", opacity:0, transition:"opacity .15s"}}>x{c.quantity||1}</span>
+                  <span className='qty-badge'>x{c.quantity||1}</span>
                   {removeBtn}
                 </div>
               );
