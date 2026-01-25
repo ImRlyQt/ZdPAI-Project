@@ -1,6 +1,6 @@
 @use "./variables" as *;
 
-.auth-main { display:flex; flex-direction:column; width:100%; height:100%; overflow:auto; position:relative; }
+.auth-main { display:flex; flex-direction:column; width:100%; height:100%; overflow:hidden; position:relative; }
 .auth-main .wrapper { display:flex; flex-direction:row; justify-content:space-between; position:relative; width:100%; min-height:100%; }
 .auth-main .container { padding:2.5rem; padding-top:7.5rem; border-radius:$radius; width:100%; flex:1; flex-shrink:1; max-width:31.25rem; padding-left:3.75rem; }
 .auth-main h2 { margin:0 0 0.625rem; font-weight:600; }
