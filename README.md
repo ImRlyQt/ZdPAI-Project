@@ -1,3 +1,6 @@
+# PROJEKT JEST KONTYNUACJĄ POPRZEDNIEGO PROJEKUT
+o tego tu: https://github.com/ImRlyQt/WdPAI-Project
+
 # DeckHeaven
 
 A full‑stack web app for building and showcasing Magic: The Gathering card collections. The project is split into a React (Vite) frontend and a FastAPI backend with JWT authentication.
