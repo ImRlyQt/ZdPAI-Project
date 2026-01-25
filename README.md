@@ -90,6 +90,17 @@ VITE_API_URL=http://localhost:8000
 - Tables are created on startup.
 - Admin bootstrap: email `admin@gmail.com`, password `123`.
 
+## Database Schema
+The schema is initialized automatically from `init.sql`.
+
+- Users, user_cards, and a unique constraint on `(user_id, card_id)`.
+- Admin user seeded and enforced idempotently by email.
+
+Diagram ERD:
+
+
+![Collection](screens/ERD.png)
+
 ## Authors
 - Ernest Leśniak
 
