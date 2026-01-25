@@ -1,7 +1,7 @@
 1. README i uruchomienie – SPEŁNIONE
 	- Opisy i instrukcje startu w backend/README.md i frontend/README.md.
 
-2. Architektura / ERD (min. 5 tabel) – DO UZUPEŁNIENIA
+2. Architektura / ERD (min. 5 tabel) – SPEŁNIONE
 	- Brak osobnego ERD w repo. Dodać np. docs/erd.md (Mermaid) z min. 5 tabelami.
 
 3. Baza danych (3NF + min. 30 rekordów) – DO UZUPEŁNIENIA
