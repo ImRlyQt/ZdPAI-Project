@@ -1,15 +1,44 @@
-1. README i uruchomienie – jasny opis projektu, instrukcja startu backendu i frontendu.
-2. Architektura / ERD – czytelny diagram ERD z min. 5 tabelami.
-3. Baza danych – baza w 3NF, minimum 30 rekordów testowych w bazie.
-4. Repozytorium Git – co najmniej 40 commitów, czytelna historia, konwencja commitów.
-5. Implementacja funkcji – działa co najmniej 70% zadeklarowanych funkcjonalności.
-6. Dobór technologii – backend i frontend na nowoczesnych technologiach, z krótkim
-uzasadnieniem (np. w readme).
-7. Architektura kodu – warstwy rozdzielone (kontrolery, serwisy).
-8. UX/UI – aplikacja responsywna, poprawny design system.
-9. Uwierzytelnianie i autoryzacja – JWT, role użytkowników, poprawna obsługa sesji.
-10. API – REST/GraphQL zgodny ze standardami, poprawne statusy i błędy.
-11. Frontend–API – frontend faktycznie korzysta z API, poprawna obsługa stanów (loading/error).
-12. Jakość kodu – brak powielania logiki, zachowana konwencja nazw, brak śmieci w kodzie.
-13. Asynchroniczność / kolejki – przykład zadania kolejkowego (RabbitMQ/Kafka).
-14. Dokumentacja API – Swagger/OpenAPI kompletne i aktualne.
+1. README i uruchomienie – SPEŁNIONE
+	- Opisy i instrukcje startu w backend/README.md i frontend/README.md.
+
+2. Architektura / ERD (min. 5 tabel) – DO UZUPEŁNIENIA
+	- Brak osobnego ERD w repo. Dodać np. docs/erd.md (Mermaid) z min. 5 tabelami.
+
+3. Baza danych (3NF + min. 30 rekordów) – DO UZUPEŁNIENIA
+	- Obecny model ma 2 tabele (users, user_cards) i nie spełnia 3NF dla kart.
+	- Brak seed danych. Potrzebny skrypt zasilający DB (min. 30 rekordów).
+
+4. Repozytorium Git (>=40 commitów) – DO UZUPEŁNIENIA
+	- Wymagane minimum 40 commitów z czytelną historią.
+
+5. Implementacja funkcji (>=70%) – SPEŁNIONE
+	- Działa: logowanie, rejestracja, profil, publiczny profil, wyszukiwanie profili i kart,
+	  dodawanie/usuwanie kart, rola admina, usuwanie konta.
+
+6. Dobór technologii + uzasadnienie – DO UZUPEŁNIENIA
+	- Brak osobnego uzasadnienia w README. Dodać krótkie sekcje w obu README.
+
+7. Architektura kodu (warstwy) – DO UZUPEŁNIENIA
+	- Backend działa głównie w routerach; brakuje wyraźnej warstwy serwisów.
+
+8. UX/UI (responsywność) – CZĘŚCIOWO SPEŁNIONE
+	- Są media queries w frontend/src/styles/auth.scss i profile.scss.
+	- Do dopracowania na mniejszych ekranach (testy mobilne).
+
+9. Uwierzytelnianie i autoryzacja – SPEŁNIONE
+	- JWT w backend/auth.py i role (is_admin) w backend.
+
+10. API – SPEŁNIONE
+	- REST w backend/routers/*, statusy błędów obsłużone (401/404/409).
+
+11. Frontend–API (loading/error) – DO UZUPEŁNIENIA
+	- Brak jawnych stanów loading/error w wyszukiwaniu profili/kart i liście kart.
+
+12. Jakość kodu – SPEŁNIONE
+	- Spójne nazewnictwo i brak zbędnych plików w głównym kodzie.
+
+13. Asynchroniczność/kolejki – DO UZUPEŁNIENIA
+	- Brak przykładu zadania kolejkowego (RabbitMQ/Kafka).
+
+14. Dokumentacja API – SPEŁNIONE
+	- FastAPI generuje Swagger/OpenAPI automatycznie (/docs, /redoc).
