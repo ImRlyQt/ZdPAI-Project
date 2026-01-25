@@ -107,6 +107,7 @@ export default function Profile(){
     const body = (isAdmin && isPublic) ? { user_id: viewedUserId } : {};
     const r = await apiPost("/account/delete", token, body);
     if (r.ok) {
+      setShowDel(false);
       if (isAdmin && isPublic) navigate("/profile"); else logoutClick();
     }
   }
